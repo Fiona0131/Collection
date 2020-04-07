@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Team {
+	ArrayList<String> item = new ArrayList<String>();
+	
+	public void loadItems(ArrayList<String> items) {
+		this.item.addAll(items);
+	}
+	
+	public void shuffle() {
+		Random r = new Random();
+		 for(int i=0; i<=item.size(); i++) {
+			 //Random for remaining position
+			 int randomIndex = i+r.nextInt(item.size()-i);
+			 
+			 //swapping the elements
+			 String tmp =item.get(randomIndex);
+			 item.set(randomIndex, item.get(i));
+			 item.set(i, tmp);
+			 System.out.print("\n"+tmp);
+	}
+	}	 
+		 public void printItems(){
+		       String temp = "[";
+		       for(String s: item){
+		           temp = temp+s+", ";
+		       }
+		       temp = temp.substring(0,temp.length()-2);
+		       temp+="]";
+		       System.out.println(temp);
+		   }
+		public void retrieveElement(int p) {
+			System.out.println(item.get(p-1));
+		}
+		public void addNewElement(int p) {
+			item.set(p-1, "new element");
+		}
+		public String getElement(int e) {
+			return item.get(e);
+			
+		}
+
+			}
