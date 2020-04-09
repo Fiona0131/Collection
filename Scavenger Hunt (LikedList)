@@ -1,0 +1,194 @@
+/**
+ * This program is to test time complexity of operations such as:
+ * looping, loading, get, insert of LinkedList
+ * Ouput: Time results of each operations
+ * @author Fiona Le
+ * @ April 9, 2020
+ *
+ */
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.Random;
+import java.util.Scanner;
+
+public class part3LinkedList {
+	 public static void main(String[] args){
+		 System.out.println("LinkedList test!" );
+		 
+		 //initializing linkedlist to store elements
+		 LinkedList<String> list = new LinkedList<String>();
+		 list.add("yesterday's newspaper");
+		 list.add("shoelace");
+		 list.add("paperbag");
+		 list.add("cup");
+		 list.add("spoon");
+		 list.add("folk");
+		 list.add("knife");
+		 list.add("chopsticks");
+		 list.add("bowl");
+		 list.add("glass jar");
+		 list.add("flowers");
+		 list.add("instant noodles");
+		 list.add("soda");
+		 list.add("chips");
+		 list.add("candle");
+		 list.add("traw");
+		 list.add("water bottle");
+		 list.add("mask");
+		 list.add("towel");
+		 list.add("kettle");
+		 list.add("toothpaste");
+		 list.add("piece of bread");
+		 list.add("pairs of socks");
+		 list.add("jacket");
+		 list.add("t-shirt");
+		 list.add("shorts");
+		 list.add("jeans");
+		 list.add("skirt");
+		 list.add("hair band");
+		 list.add("watch");
+		 list.add("ring");
+		 list.add("earings");
+		 list.add("eyeglasses");
+		 list.add("necklace");
+		 list.add("wristlace");
+		 list.add("sunglasses");
+		 list.add("iphone");
+		 list.add("book");
+		 list.add("notebook");
+		 list.add("pen");
+		 list.add("pencil");
+		 list.add("ruler");
+		 list.add("paper");
+		 list.add("paper clip");
+		 list.add("highlighter");
+		 list.add("wallet");
+		 list.add("penny coin");
+		 list.add("quarter coin");
+		 list.add("dime coin");
+		 list.add("one-dollar bill");
+		 list.add("medicine bottle");
+		 list.add("binder");
+		 list.add("blanket");
+		 list.add("pillow case");
+		 list.add("teddy bear");
+		 list.add("chair");
+		 list.add("box");
+		 list.add("lipstick");
+		 list.add("comb");
+		 list.add("handsanitizer");
+		 list.add("ice tray");
+		 list.add("flight ticket");
+		 list.add("bus ticket");
+		 list.add("wipe");
+		 list.add("tissue");
+		 list.add("calendar");
+		 list.add("photo");
+		 list.add("tea");
+		 list.add("coffee");
+		 list.add("handbag");
+		 list.add("backbag");
+		 list.add("laptop");
+		 list.add("shoes");
+		 list.add("TV remote");
+		 list.add("fan remote");
+		 list.add("orange");
+		 list.add("apple");
+		 list.add("lemon");
+		 list.add("bulb");
+		 list.add("ziplock bag");
+		 list.add("pancake");
+		 list.add("potato");
+		 list.add("tomato");
+		 list.add("coconut");
+		 list.add("banana");
+		 list.add("strawberry");
+		 list.add("chocolate");
+		 list.add("hat");
+		 list.add("cap");
+		 list.add("box");
+		 list.add("CD");
+		 list.add("hanger");
+		 list.add("receipt");
+		 list.add("key");
+		 list.add("balloon");
+		 list.add("battery");
+		 list.add("ketchup");
+		 list.add("staple");
+		 list.add("napkin");
+		 list.add("button");
+		 
+		 
+		 ListIterator<String> li = list.listIterator();
+		 long startTime1 = System.nanoTime();
+		 //loop nextward
+		 while(li.hasNext()) {
+			 li.next();
+		 }
+		 //loop backward
+		 while(li.hasPrevious()) {
+			 li.previous();
+		 }
+		 long estimatedTime1 = System.nanoTime() - startTime1;
+         System.out.println("Time to looping LinkedList: " + estimatedTime1);
+         
+         // create arraylist to store teams
+		 ArrayList<Team> teams = new ArrayList<Team>();
+		 //input
+	     System.out.print("\nHow many teams: ");
+		 Scanner input = new Scanner(System.in);
+		 int team = input.nextInt();
+		 System.out.print("Which element do you want to work with. Enter a number between 1 and 100)");
+         Scanner sc = new Scanner(System.in);
+		 int e = sc.nextInt();
+		 
+		 //Loading list to all team
+		 long startTime2 = System.nanoTime();
+		 for(int i=0;i<=team-1;i++){
+	           Team t = new Team();
+	           Collections.shuffle(list);
+	           t.loadItems(list);
+	           t.printItems2();
+	           teams.add(t);
+	       }
+		 long estimatedTime2 = System.nanoTime() - startTime2;
+         System.out.println("Time to loading items:" + estimatedTime2);
+	     
+         //Get the elements at the input index
+         System.out.println("\nThe "+e+"th element is: ");         
+         long startTime3 = System.nanoTime();
+         for(Team t: teams) {
+        	 t.retrieveElement2(e);        
+        }
+         long estimatedTime3 = System.nanoTime() - startTime3;
+         System.out.println("Time to get the "+e+"th element: "+estimatedTime3);
+        
+         //Add the new element at the input position
+         long startTime4 = System.nanoTime();
+         for(Team t: teams) {
+        	 t.addNewElement2(e);
+         }
+         long estimatedTime4 = System.nanoTime() - startTime4;
+         System.out.println("Time to add at the "+e+"th element: "+estimatedTime4);
+         
+        //Get the elements at the random index
+        Random rand = new Random();
+		int randomIndex = rand.nextInt((100-1+1)+1);
+		System.out.print("\nRandom index: "+randomIndex);
+		System.out.println("\nElement at the random index: \n");
+		long startTime5 = System.nanoTime();
+		for(Team t: teams) {
+        String randomElement = t.getElement2(randomIndex-1);
+    	System.out.println(randomElement);
+		}
+		long estimatedTime5 = System.nanoTime() - startTime5;
+		System.out.println("\nTime to get the "+randomIndex+" th element: "+estimatedTime5);
+		
+	    }
+	 
+	 	
+	 	
+	 }
+
