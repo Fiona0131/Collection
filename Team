@@ -1,11 +1,16 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Team {
 	ArrayList<String> item = new ArrayList<String>();
+	LinkedList<String> it = new LinkedList<String>();
 	
 	public void loadItems(ArrayList<String> items) {
 		this.item.addAll(items);
+	}
+	public void loadItems(LinkedList<String> i) {
+		this.it.addAll(i);
 	}
 	
 	public void shuffle() {
@@ -21,7 +26,8 @@ public class Team {
 			 System.out.print("\n"+tmp);
 	}
 	}	 
-		 public void printItems(){
+		//print method for ArrayList
+		 public void printItems1(){
 		       String temp = "[";
 		       for(String s: item){
 		           temp = temp+s+", ";
@@ -30,15 +36,45 @@ public class Team {
 		       temp+="]";
 		       System.out.println(temp);
 		   }
-		public void retrieveElement(int p) {
+		// print method for LinkedList
+		 public void printItems2(){
+		       String temp = "[";
+		       for(String s: it){
+		           temp = temp+s+", ";
+		       }
+		       temp = temp.substring(0,temp.length()-2);
+		       temp+="]";
+		       System.out.println(temp);
+		   }
+		 
+		 // retrieving element - ArrayList
+		 
+		public void retrieveElement1(int p) {
 			System.out.println(item.get(p-1));
 		}
-		public void addNewElement(int p) {
-			item.set(p-1, "new element");
+		// retrieving element - LinkedList
+		public void retrieveElement2(int p) {
+			System.out.println(it.get(p-1));
 		}
-		public String getElement(int e) {
+		
+		// add new element - ArrayList
+		public void addNewElement1(int p) {
+			item.add(p-1, "new element");
+		}
+		//add new element - LinkedList
+		public void addNewElement2(int p) {
+			it.add(p-1, "new element");
+		}
+		//get ele - ArrayList
+		public String getElement1(int e) {
 			return item.get(e);
 			
 		}
+		// get ele - LinkedList
+		public String getElement2(int e) {
+			return it.get(e);
+			
+		}
+		
 
 			}
