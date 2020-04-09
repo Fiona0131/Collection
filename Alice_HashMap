@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+
+public class part2Hashmap {
+    public static void main(String[] args){
+        try {
+            HashSet<String> h = new HashSet<String>();
+            Scanner input = new Scanner(new File("aliceInWonderland.txt"));
+            long startTime1 = System.nanoTime();
+            while (input.hasNext()){
+                h.add(input.next());
+            }
+            long estimatedTime1 = System.nanoTime() - startTime1;
+            System.out.println("Insertion time :" + estimatedTime1);
+            int found=0;
+            long startTime2 = System.nanoTime();
+            for (int i = 0; i<100; i++){
+               if (h.contains("Alice")) {
+            	 found=1;
+			}
+            }
+            long estimatedTime2 = System.nanoTime() - startTime2;
+            System.out.println("Search time :" + estimatedTime2);
+            input.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+       
+    }
+   
+}
