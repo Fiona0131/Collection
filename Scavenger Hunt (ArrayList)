@@ -1,3 +1,11 @@
+/**
+ * This program is to test time complexity of operations such as:
+ * looping, loading, get, insert of ArrayList
+ * Ouput: Time results of each operations
+ * @author Fiona Le
+ * @ April 9, 2020
+ *
+ */
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ListIterator;
@@ -5,9 +13,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class part3ArrayList {
+	
 	 public static void main(String[] args){
-		 
+		 System.out.println("ArrayList Tester!" );
+		 //create an arraylist to store elements
 		 ArrayList<String> list = new ArrayList<String>();
+		 
 		 list.add("yesterday's newspaper");
 		 list.add("shoelace");
 		 list.add("paperbag");
@@ -89,91 +100,95 @@ public class part3ArrayList {
 		 list.add("bulb");
 		 list.add("ziplock bag");
 		 list.add("pancake");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
-		 list.add("bowl");
+		 list.add("potato");
+		 list.add("tomato");
+		 list.add("coconut");
+		 list.add("banana");
+		 list.add("strawberry");
+		 list.add("chocolate");
+		 list.add("hat");
+		 list.add("cap");
+		 list.add("box");
+		 list.add("CD");
+		 list.add("hanger");
+		 list.add("receipt");
+		 list.add("key");
+		 list.add("balloon");
+		 list.add("battery");
+		 list.add("ketchup");
+		 list.add("staple");
+		 list.add("napkin");
+		 list.add("button");
 		 
-		 
+		 //create an iterator
 		 ListIterator<String> li = list.listIterator();
+		 System.out.print("Looping the list starts!");
 		 long startTime1 = System.nanoTime();
+		 //looping nextward
 		 while(li.hasNext()) {
-			 System.out.println(li.next());
+			 li.next();
 		 }
-		 System.out.println("\nBackward list: ");
+		 //looping backward
 		 while(li.hasPrevious()) {
-			 System.out.println(li.previous());
+			 li.previous();
 		 }
 		 long estimatedTime1 = System.nanoTime() - startTime1;
-         System.out.println("Iterate time :" + estimatedTime1);
+         System.out.println("\nLooping time :" + estimatedTime1);
          
+         //creat an arraylist to store teams
 		 ArrayList<Team> teams = new ArrayList<Team>();
-	      
-		System.out.print("\nHow many teams: ");
+		 //input
+	     System.out.print("\nHow many teams: ");
 		 Scanner input = new Scanner(System.in);
 		 int team = input.nextInt();
+		 System.out.print("Which element do you want to work with. Enter a number between 1 and 100)");
+          Scanner sc = new Scanner(System.in);
+		 int e = sc.nextInt();
+		 
+		 //loading list to all teams
 		 long startTime2 = System.nanoTime();
 		 for(int i=0;i<=team-1;i++){
 	           Team t = new Team();
-	           t.loadItems(list);
 	           Collections.shuffle(list);
+	           t.loadItems(list);
+	           t.printItems1();
 	           teams.add(t);
 	       }
 		 long estimatedTime2 = System.nanoTime() - startTime2;
-         System.out.println("Loading (items to each team) time :" + estimatedTime2);
+         System.out.println("Loading time :" + estimatedTime2);
 	     
-         System.out.print("\nWhich element do you want to work with. Enter a number between 1 and 100)");
-         
-         Scanner sc = new Scanner(System.in);
-		 int e = sc.nextInt();
-		 System.out.println("\n");
-         for(Team t : teams){
-        	 
-        	 t.printItems();
-	      }
+         //Get the elements at the input index
+         System.out.println("\nThe "+e+"th element is: ");     
          long startTime3 = System.nanoTime();
          for(Team t: teams) {
-        	 t.retrieveElement(e);        
+        	 t.retrieveElement1(e);        
         }
          long estimatedTime3 = System.nanoTime() - startTime3;
-         System.out.println("Retrieving time: "+estimatedTime3);
-         System.out.println("\n");
-         //Add the new element at the specific position
+         System.out.println("Time to get the "+e+"th element: "+estimatedTime3);
+ 
+        //Add the new element at the input position
          long startTime4 = System.nanoTime();
          for(Team t: teams) {
-        	 t.addNewElement(e);
-        	 t.printItems();
+        	 t.addNewElement1(e);
+        	
          }
          long estimatedTime4 = System.nanoTime() - startTime4;
-         System.out.println("Inserting time: "+estimatedTime3);
+         System.out.println("Time to add at the "+e+"th element: "+estimatedTime4);
          
-        //Random index
+       //Get the elements at the random index
         Random rand = new Random();
-		int randomIndex = rand.nextInt(100);
+        int randomIndex = rand.nextInt((100-1+1)+1);
 		System.out.print("\nRandom index: "+randomIndex);
+		
+		//print element at the input index
+		System.out.println("\nElement at the random index: \n");
 		long startTime5 = System.nanoTime();
 		for(Team t: teams) {
-        String randomElement = t.getElement(randomIndex-1);
- 		System.out.println("\nElement at the random index: "+randomElement);
+        String randomElement = t.getElement1(randomIndex-1);
+ 		System.out.println(randomElement);
 		}
 		long estimatedTime5 = System.nanoTime() - startTime5;
-		 System.out.println("Retrieving the element (at the random index) time: "+estimatedTime5);
-		
+		System.out.print("\nTime to get the "+randomIndex+" th element: "+estimatedTime5);
 	    }
 	 
 	 	
