@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class part2Treemap {
+    public static void main(String[] args){
+        try {
+            TreeSet<String> t = new TreeSet<String>();
+            Scanner input = new Scanner(new File("aliceInWonderland.txt"));
+            long startTime1 = System.nanoTime();
+            while (input.hasNext()){
+                t.add(input.next());
+            }
+            long estimatedTime1 = System.nanoTime() - startTime1;
+            System.out.println("Insertion time :" + estimatedTime1);
+            int found = 0;
+            long startTime2 = System.nanoTime();
+            for (int i = 0; i<100; i++){
+               if (t.contains("Alice"))
+                  found = 1;
+            }
+            long estimatedTime2 = System.nanoTime() - startTime2;
+            System.out.println("Search time :" + estimatedTime2);
+            input.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
